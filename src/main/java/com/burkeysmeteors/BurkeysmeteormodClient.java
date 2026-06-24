@@ -1,6 +1,9 @@
 package com.burkeysmeteors;
 
+import com.burkeysmeteors.entity.ModEntities;
+import com.burkeysmeteors.entity.client.meteorclient.MeteorRenderer;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModContainer;
@@ -27,5 +30,6 @@ public class BurkeysmeteormodClient {
         // Some client setup code
         Burkeysmeteormod.LOGGER.info("HELLO FROM CLIENT SETUP");
         Burkeysmeteormod.LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
+        EntityRenderers.register(ModEntities.STANDARD_METEOR.get(), MeteorRenderer::new);
     }
 }
