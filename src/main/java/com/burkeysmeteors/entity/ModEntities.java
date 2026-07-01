@@ -17,7 +17,7 @@ public class ModEntities {
 
     public static final Supplier<EntityType<StandardMeteorEntity>> STANDARD_METEOR =
             ENTITY_TYPES.register("standardmeteor", () -> EntityType.Builder.of(StandardMeteorEntity::new, MobCategory.MISC)
-                    .sized(3f, 3f).setTrackingRange(256).build("standardmeteor"));
+                    .sized(3f, 3f).setTrackingRange(256).updateInterval(1).build("standardmeteor"));
 
 
     public static void register(IEventBus eventBus) {

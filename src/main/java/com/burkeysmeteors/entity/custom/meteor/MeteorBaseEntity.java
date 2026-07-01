@@ -13,21 +13,19 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
+import net.minecraft.world.phys.Vec3;
 
 public class MeteorBaseEntity extends Projectile{
 
 
+    BlockPos anchorPoint;
 
     public final AnimationState fallingAnimationState = new AnimationState();
     public MeteorBaseEntity(EntityType<? extends Projectile> entityType, Level level) {
         super(entityType, level);
+        this.anchorPoint = BlockPos.ZERO;
 
     }
-
-
-
-
-
 
     protected void onHitBlock(BlockHitResult result) {
         super.onHitBlock(result);
@@ -36,15 +34,15 @@ public class MeteorBaseEntity extends Projectile{
         }
     }
 
-    private void destroy() {
-        this.discard();
+    public void destroy() {
         this.level().gameEvent(GameEvent.ENTITY_DAMAGE, this.position(), GameEvent.Context.of(this));
+        this.discard();
     }
     private void setupAnimationStates() {
 
 
         if (!this.fallingAnimationState.isStarted()) {
-            this.fallingAnimationState.start(this.tickCount);
+           this.fallingAnimationState.start(this.tickCount);
         }
     }
 
@@ -65,28 +63,36 @@ public class MeteorBaseEntity extends Projectile{
             if(this.onGround()){
                 this.onHitBlock((BlockHitResult) hitresult);
             }
-            this.move(MoverType.SELF, this.getDeltaMovement());
-
 
 
             this.checkInsideBlocks();
         }
-     if(this.level().isClientSide()) {
+        else{
             this.setupAnimationStates();
         }
+        Vec3 vec3 = this.getDeltaMovement();
+        double d0 = this.getX() + vec3.x;
+        double d1 = this.getY() + vec3.y;
+        double d2 = this.getZ() + vec3.z;
+        this.setPos(d0, d1, d2);
 
 
     }
 
     public void addAdditionalSaveData(CompoundTag compound) {
         super.addAdditionalSaveData(compound);
-        //compound.putString("MeteorType", this.getMeteorType());
+        compound.putInt("AX", this.anchorPoint.getX());
+        compound.putInt("AY", this.anchorPoint.getY());
+        compound.putInt("AZ", this.anchorPoint.getZ());
 
     }
 
     public void readAdditionalSaveData(CompoundTag compound) {
-        //this.set(compound.getString("MeteorType") + 1, false);
+        if (compound.contains("AX")) {
+            this.anchorPoint = new BlockPos(compound.getInt("AX"), compound.getInt("AY"), compound.getInt("AZ"));
+        }
         super.readAdditionalSaveData(compound);
+
     }
 
 
@@ -105,6 +111,14 @@ public class MeteorBaseEntity extends Projectile{
             }
         }
         return -1;
+    }
+
+    public BlockPos getAnchorPoint() {
+        return anchorPoint;
+    }
+
+    public void setAnchorPoint(BlockPos anchorPoint) {
+        this.anchorPoint = anchorPoint;
     }
 
 

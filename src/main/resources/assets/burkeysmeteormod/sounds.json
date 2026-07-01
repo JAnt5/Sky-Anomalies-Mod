@@ -1,0 +1,16 @@
+{
+  "meteor_crash_small": {
+    "subtitle": "sounds.burkeysmeteormod.meteor_crash_small",
+    "sounds": [{
+      "name":"burkeysmeteormod:meteor_crash_small",
+      "attenuation_distance": 80
+    }]
+  },
+  "meteor_flyby": {
+    "subtitle": "sounds.burkeysmeteormod.meteor_flyby",
+    "sounds": [{
+      "name":"burkeysmeteormod:meteor_flyby",
+      "attenuation_distance": 50
+    }]
+  }
+}

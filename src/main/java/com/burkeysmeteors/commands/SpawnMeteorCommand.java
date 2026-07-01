@@ -3,6 +3,7 @@ package com.burkeysmeteors.commands;
 import com.burkeysmeteors.entity.custom.meteor.MeteorTypes;
 import com.burkeysmeteors.entity.util.SkyAnomalyUtils;
 import com.mojang.brigadier.CommandDispatcher;
+import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import net.minecraft.client.Minecraft;
@@ -21,7 +22,9 @@ public class SpawnMeteorCommand {
         dispatcher.register(Commands.literal("spawnMeteor").requires(
                 commandSourceStack -> commandSourceStack.hasPermission(4))
                 .then(Commands.argument("meteorType", EnumArgument.enumArgument(MeteorTypes.class))
-                .then(Commands.argument("player", EntityArgument.player()).executes(SpawnMeteorCommand::spawnMeteor)))
+                .then(Commands.argument("player", EntityArgument.player())
+                .then(Commands.argument("size", IntegerArgumentType.integer(1,5))
+                        .executes(SpawnMeteorCommand::spawnMeteor))))
         );
     }
 
@@ -29,8 +32,8 @@ public class SpawnMeteorCommand {
         Player player = EntityArgument.getPlayer(context,"player");
         MeteorTypes meteorType = context.getArgument("meteorType", MeteorTypes.class);
         ServerLevel world = Objects.requireNonNull(player.getServer()).getLevel(ServerLevel.OVERWORLD);
-
-        SkyAnomalyUtils.spawnMeteor(world,player,meteorType);
+        int size = IntegerArgumentType.getInteger(context,"size");
+        SkyAnomalyUtils.spawnMeteor(world,player,meteorType,size);
 
         Minecraft.getInstance().gui.getChat().addMessage(Component.literal("Spawned new " + meteorType + " meteor"));
         return 1;

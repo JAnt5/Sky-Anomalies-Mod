@@ -11,10 +11,10 @@ import net.minecraft.client.animation.KeyframeAnimations;
  * @author Author
  */
 public class MeteorAnimations {
-	public static final AnimationDefinition falling = AnimationDefinition.Builder.withLength(1.0F).looping()
-		.addAnimation("main_rock", new AnimationChannel(AnimationChannel.Targets.ROTATION, 
-			new Keyframe(0.0F, KeyframeAnimations.degreeVec(0.0F, 0.0F, 0.0F), AnimationChannel.Interpolations.LINEAR),
-			new Keyframe(1.0F, KeyframeAnimations.degreeVec(180.0F, 180.0F, -180.0F), AnimationChannel.Interpolations.LINEAR)
-		))
-		.build();
+	public static final AnimationDefinition falling = AnimationDefinition.Builder.withLength(2.0F).looping()
+			.addAnimation("meteor", new AnimationChannel(AnimationChannel.Targets.ROTATION,
+					new Keyframe(0.0F, KeyframeAnimations.degreeVec(0.0F, 0.0F, 0.0F), AnimationChannel.Interpolations.LINEAR),
+					new Keyframe(2.0F, KeyframeAnimations.degreeVec(0.0F, -360.0F, 360.0F), AnimationChannel.Interpolations.LINEAR)
+			))
+			.build();
 }
