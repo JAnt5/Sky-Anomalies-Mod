@@ -1,7 +1,6 @@
 package com.burkeysmeteors.entity;
 
-import com.burkeysmeteors.Burkeysmeteormod;
-import com.burkeysmeteors.entity.custom.meteor.MeteorBaseEntity;
+import com.burkeysmeteors.SkyAnomaliesMod;
 import com.burkeysmeteors.entity.custom.meteor.StandardMeteorEntity;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.entity.EntityType;
@@ -12,7 +11,7 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 import java.util.function.Supplier;
 
 public class ModEntities {
-    public static final DeferredRegister<EntityType<?>> ENTITY_TYPES = DeferredRegister.create(BuiltInRegistries.ENTITY_TYPE, Burkeysmeteormod.MODID);
+    public static final DeferredRegister<EntityType<?>> ENTITY_TYPES = DeferredRegister.create(BuiltInRegistries.ENTITY_TYPE, SkyAnomaliesMod.MODID);
 
 
     public static final Supplier<EntityType<StandardMeteorEntity>> STANDARD_METEOR =

@@ -21,21 +21,21 @@ public class SpawnMeteorCommand {
     public static void register(CommandDispatcher<CommandSourceStack> dispatcher){
         dispatcher.register(Commands.literal("spawnMeteor").requires(
                 commandSourceStack -> commandSourceStack.hasPermission(4))
-                .then(Commands.argument("meteorType", EnumArgument.enumArgument(MeteorTypes.class))
+                //.then(Commands.argument("meteorType", EnumArgument.enumArgument(MeteorTypes.class))
                 .then(Commands.argument("player", EntityArgument.player())
                 .then(Commands.argument("size", IntegerArgumentType.integer(1,5))
-                        .executes(SpawnMeteorCommand::spawnMeteor))))
+                        .executes(SpawnMeteorCommand::spawnMeteor)))
         );
     }
 
     private static int spawnMeteor(CommandContext<CommandSourceStack> context) throws CommandSyntaxException {
         Player player = EntityArgument.getPlayer(context,"player");
-        MeteorTypes meteorType = context.getArgument("meteorType", MeteorTypes.class);
+        //MeteorTypes meteorType = context.getArgument("meteorType", MeteorTypes.class);
         ServerLevel world = Objects.requireNonNull(player.getServer()).getLevel(ServerLevel.OVERWORLD);
         int size = IntegerArgumentType.getInteger(context,"size");
-        SkyAnomalyUtils.spawnMeteor(world,player,meteorType,size);
+        SkyAnomalyUtils.spawnMeteor(world,player,MeteorTypes.STANDARD,size);
 
-        Minecraft.getInstance().gui.getChat().addMessage(Component.literal("Spawned new " + meteorType + " meteor"));
+        Minecraft.getInstance().gui.getChat().addMessage(Component.literal("Spawned new " + MeteorTypes.STANDARD + " meteor"));
         return 1;
     }
 }

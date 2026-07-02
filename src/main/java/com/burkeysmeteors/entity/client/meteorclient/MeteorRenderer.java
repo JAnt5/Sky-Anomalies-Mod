@@ -1,12 +1,11 @@
 package com.burkeysmeteors.entity.client.meteorclient;
 
-import com.burkeysmeteors.Burkeysmeteormod;
+import com.burkeysmeteors.SkyAnomaliesMod;
 import com.burkeysmeteors.entity.custom.meteor.StandardMeteorEntity;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.texture.OverlayTexture;
@@ -16,7 +15,7 @@ import org.jetbrains.annotations.UnknownNullability;
 
 public class MeteorRenderer extends EntityRenderer<StandardMeteorEntity> {
     private final MeteorModel<StandardMeteorEntity> model;
-    private final ResourceLocation TEXTURE_LOCATION = ResourceLocation.fromNamespaceAndPath(Burkeysmeteormod.MODID,"textures/entity/meteor/meteor.png");
+    private final ResourceLocation TEXTURE_LOCATION = ResourceLocation.fromNamespaceAndPath(SkyAnomaliesMod.MODID,"textures/entity/meteor/meteor.png");
 
     public MeteorRenderer(EntityRendererProvider.Context context) {
         super(context);

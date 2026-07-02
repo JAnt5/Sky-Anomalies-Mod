@@ -1,27 +1,20 @@
 package com.burkeysmeteors.entity.custom.meteor;
 
+import com.burkeysmeteors.Config;
 import com.burkeysmeteors.particle.ModParticles;
 import com.burkeysmeteors.sounds.ModSounds;
-import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.sounds.SoundEvent;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.monster.Phantom;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.phys.BlockHitResult;
-import net.minecraft.world.phys.HitResult;
-import net.minecraft.world.phys.Vec3;
-import org.apache.logging.log4j.core.jmx.Server;
 
 import java.util.Random;
 
@@ -78,7 +71,7 @@ public class StandardMeteorEntity extends MeteorBaseEntity{
             //((ServerLevel)this.level()).sendParticles(ParticleTypes.CAMPFIRE_COSY_SMOKE, this.getX(), this.getY(), this.getZ(), 50, 0.2, 0.2, 0.2, 0.5);
             ((ServerLevel)this.level()).sendParticles(ModParticles.METEOR_CHUNK_PARTICLES.get(), this.getX(), this.getY(), this.getZ(), 20, 0.2, 0.2, 0.2, 0.2);
 
-            if(this.getSize() >= 4){
+            if(this.getSize() >= 4 || Config.SHOULD_METEORS_OF_ALL_SIZES_EXPLODE.getAsBoolean()){
                 this.explode();
             }
         }
@@ -101,20 +94,6 @@ public class StandardMeteorEntity extends MeteorBaseEntity{
             for(int i = 0; i < 10; i++){
                 this.level().addAlwaysVisibleParticle(ModParticles.METEOR_DUST_PARTICLES.get(),true,this.getX() + offsetX, this.getY() + offsetY, this.getZ() + offsetZ, 0.2 * (-1*this.getMotionDirection().getStepX()), 0.2* (-1*this.getMotionDirection().getStepY()), 0.2* (-1*this.getMotionDirection().getStepZ()));
 
-            }
-            if(this.getDistanceFromGround() < 30 && this.getSize() == 1){
-                for(int i = 0; i < 15 * this.getSize(); i++){
-                    Random r = new Random();
-                    double xOffset = r.nextGaussian() *  ( random.nextBoolean() ? 1 : -1 );
-                    double yOffset = r.nextGaussian() *  ( random.nextBoolean() ? 1 : -1 );
-                    double zOffset = r.nextGaussian() *  ( random.nextBoolean() ? 1 : -1 );
-
-
-                    level().addAlwaysVisibleParticle(ModParticles.METEOR_DUST_PARTICLES.get(),true,this.getX() + xOffset,this.getY() +yOffset,this.getZ() +zOffset, 0.5f + xOffset,0.5f +yOffset,0.5f+zOffset);
-
-                }
-
-                this.destroy();
             }
             if(this.getDistanceFromGround() < 1){
                     for(int i = 0; i < 15 * this.getSize(); i++){

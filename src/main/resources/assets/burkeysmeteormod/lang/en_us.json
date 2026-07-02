@@ -1,13 +1,12 @@
 {
-  "itemGroup.burkeysmeteormod": "Example Mod Tab",
-  "block.burkeysmeteormod.example_block": "Example Block",
-  "item.burkeysmeteormod.example_item": "Example Item",
-
   "burkeysmeteormod.configuration.title": "Burkey's meteor mod Configs",
   "burkeysmeteormod.configuration.section.burkeysmeteormod.common.toml": "Burkey's meteor mod Configs",
   "burkeysmeteormod.configuration.section.burkeysmeteormod.common.toml.title": "Burkey's meteor mod Configs",
-  "burkeysmeteormod.configuration.items": "Item List",
-  "burkeysmeteormod.configuration.logDirtBlock": "Log Dirt Block",
-  "burkeysmeteormod.configuration.magicNumberIntroduction": "Magic Number Text",
-  "burkeysmeteormod.configuration.magicNumber": "Magic Number"
+
+
+  "burkeysmeteormod.configuration.meteorSpawning": "Should meteors spawn?",
+  "burkeysmeteormod.configuration.meteorSpawnSizeMin": "Minimum meteor spawn size",
+  "burkeysmeteormod.configuration.meteorSpawnSizeMax": "Maximum meteor spawn size",
+  "burkeysmeteormod.configuration.meteorSpawnFrequency": "Meteor frequency",
+  "burkeysmeteormod.configuration.meteorExplosions": "Should meteors of ALL sizes explode?"
 }

@@ -1,13 +1,10 @@
 package com.burkeysmeteors.entity.util;
 
 import com.burkeysmeteors.entity.ModEntities;
-import com.burkeysmeteors.entity.custom.meteor.MeteorBaseEntity;
 import com.burkeysmeteors.entity.custom.meteor.MeteorTypes;
 import com.burkeysmeteors.entity.custom.meteor.StandardMeteorEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.entity.ai.util.AirRandomPos;
-import net.minecraft.world.entity.ai.util.RandomPos;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.levelgen.Heightmap;

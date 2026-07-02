@@ -1,7 +1,7 @@
 package com.burkeysmeteors.event;
 
 
-import com.burkeysmeteors.Burkeysmeteormod;
+import com.burkeysmeteors.SkyAnomaliesMod;
 import com.burkeysmeteors.Config;
 import com.burkeysmeteors.commands.SpawnMeteorCommand;
 import com.burkeysmeteors.entity.client.meteorclient.MeteorModel;
@@ -14,7 +14,7 @@ import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.event.RegisterCommandsEvent;
 import net.neoforged.neoforge.event.level.ChunkWatchEvent;
 
-@EventBusSubscriber(modid = Burkeysmeteormod.MODID)
+@EventBusSubscriber(modid = SkyAnomaliesMod.MODID)
 public class ModEventBusEvents {
     @SubscribeEvent
     public static void registerLayers(EntityRenderersEvent.RegisterLayerDefinitions event) {
